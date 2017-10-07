@@ -22,26 +22,26 @@ class kanaBot:
 
     @commands.group(pass_context=True)
     @commands.has_role("PokeRaids.Staff")
-    async def kana(self, ctx):
+    async def pr(self, ctx):
         if ctx.invoked_subcommand is None:
             await self.bot.say('Commande innexistante!')
 
-    @kana.command(pass_context=True)
+    @pr.command(pass_context=True)
     async def riki(self, ctx):
        sshgo("tallinn")
        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" Rimouski Redémarré")
 
-    @kana.command(pass_context=True)
+    @pr.command(pass_context=True)
     async def stl(self, ctx):
         sshgo("stl")
         await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" Sainte-Luce Redémarré")
 
-    @kana.command(pass_context=True)
+    @pr.command(pass_context=True)
     async def mj(self, ctx):
         sshgo("mj")
         await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" Mont-Joli Redémarré")
 
-    @kana.command(pass_context=True)
+    @pr.command(pass_context=True)
     async def alarm(self, ctx):
         sshgo("alarm")
         await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" PokéAlarms Redémaré")
