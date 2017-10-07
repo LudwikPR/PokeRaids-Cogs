@@ -12,7 +12,7 @@ def sshgo(cmd):
             'mj': 'service mj restart',
         }
         theCmd = cmds[cmd]
-        os.exec_command(theCmd)
+        os.system(theCmd)
 
 class kanaBot:
     """Allow kanaNagu to have basic control"""
