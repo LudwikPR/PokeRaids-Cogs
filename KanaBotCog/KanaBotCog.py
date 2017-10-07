@@ -23,72 +23,39 @@ def get_args():
             help='path to config file (config.ini by default)')
 
         parser.add_argument(
-            '-sh',
-            '--scanhost',
+            '-h',
+            '--host',
             help='host for scanserver'
         )
 
         parser.add_argument(
-            '-su',
-            '--scanuser',
+            '-u',
+            '--user',
             help='username for scanserver'
         )
 
         parser.add_argument(
-            '-sp',
-            '--scanpassword',
+            '-p',
+            '--password',
             help='password for scanserver'
         )
 
-        parser.add_argument(
-            '-fh',
-            '--fronthost',
-            help='host for frontend server'
-        )
-
-        parser.add_argument(
-            '-fu',
-            '--frontuser',
-            help='host for frontend server'
-        )
-
-        parser.add_argument(
-            '-fp',
-            '--frontpassword',
-            help='password for frontend server'
-        )
         return parser.parse_args()
 
 def sshgo(cmd):
         cmds = {
-            'alarm': 'service alarms restart',
-            'tallinn': 'service tallinnmap2 restart',
-            'tartu': 'service tartumap restart',
-            'peetri': 'service peetri restart',
-            'haapsalu': 'service haapsalumap restart',
-            'rakvere': 'service rakveremap restart',
-            'kuressaare': 'service saaremaamap restart',
-            'webserver': 'sh restartAll.sh',
-            'nginx': 'sudo service nginx restart',
-            'dontdothis': 'reboot',
-            'test': 'mkdir thisshouldwork'
+            'alarm': 'sudo service pr restart',
+            'riki': 'sudo service riki restart',
+            'stl': 'sudo service stl restart',
+            'mj': 'sudo service mj restart',
         }
 
         args = get_args()
         theCmd = cmds[cmd]
-        be = True
-        if cmd in ("nginx", "webserver"):
-            be = False
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        if (be):
-            ssh.connect(args.scanhost, username=args.scanuser,
-                        password=args.scanpassword)
-            ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(theCmd)
-
-        else:
-            ssh.connect(args.fronthost, username=args.frontuser,
-                        password=args.frontpassword)
+            ssh.connect(args.scanhost, username=args.user,
+                        password=args.password)
             ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(theCmd)
 
 
@@ -100,61 +67,30 @@ class kanaBot:
 
 
     @commands.group(pass_context=True)
-    @commands.has_role("kananägu")
+    @commands.has_role("Pokeraids.Bot")
     async def kana(self, ctx):
         if ctx.invoked_subcommand is None:
             await self.bot.say('Invalid :chicken:')
 
     @kana.command(pass_context=True)
-    async def tallinn(self, ctx):
+    async def riki(self, ctx):
        sshgo("tallinn")
-       await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" tallinn restarted")
+       await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" Rimouski Redémarré")
 
     @kana.command(pass_context=True)
-    async def tartu(self, ctx):
-        sshgo("tartu")
-        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" tartu restarted")
+    async def stl(self, ctx):
+        sshgo("stl")
+        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" Sainte-Luce Redémarré")
 
     @kana.command(pass_context=True)
-    async def peetri(self, ctx):
-        sshgo("peetri")
-        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" peetri restarted")
-
-    @kana.command(pass_context=True)
-    async def rakvere(self, ctx):
-        sshgo('rakvere')
-        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" rakvere restarted")
-
-    @kana.command(pass_context=True)
-    async def haapsalu(self, ctx):
-        sshgo("haapsalu")
-        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" haapsalu restarted")
-
-    @kana.command(pass_context=True)
-    async def kuressaare(self, ctx):
-        sshgo("kuressaare")
-        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" kuressaare restarted")
-
-    @kana.command(pass_context=True)
-    async def webserver(self, ctx):
-
-        sshgo("webserver")
-        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" frontend restarted")
-
-    @kana.command(pass_context=True)
-    async def nginx(self, ctx):
-        sshgo("nginx")
-        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" nginx restarted")
-
-    @kana.command(pass_context=True)
-    async def dontdothis(self, ctx):
-        sshgo("dontdothis")
-        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" :hamster: server restarted")
+    async def mj(self, ctx):
+        sshgo("mj")
+        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" Mont-Joli Redémarré")
 
     @kana.command(pass_context=True)
     async def alarm(self, ctx):
         sshgo("alarm")
-        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" alarms restarted")
+        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" PokéAlarms Redémaré")
 
 
 def setup(bot):
