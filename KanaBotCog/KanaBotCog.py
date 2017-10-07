@@ -21,7 +21,7 @@ class kanaBot:
         self.bot = bot
 
     @commands.group(pass_context=True)
-    @commands.has_role("PokeRaids.Admin")
+    @commands.has_role("PokeRaids.Staff")
     async def prmap(self, ctx):
         if ctx.invoked_subcommand is None:
             await self.bot.say('Commande innexistante!')
