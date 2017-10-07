@@ -6,10 +6,10 @@ client = discord.Client()
 
 def sshgo(cmd):
         cmds = {
-            'alarm': 'service pr restart',
-            'riki': 'service riki restart',
-            'stl': 'service stl restart',
-            'mj': 'service mj restart',
+            'pokealarm': 'service pr restart',
+            'rimouski': 'service riki restart',
+            'luceville': 'service stl restart',
+            'montjoli': 'service mj restart',
         }
         theCmd = cmds[cmd]
         os.system(theCmd)
@@ -27,23 +27,23 @@ class kanaBot:
             await self.bot.say('Commande innexistante!')
 
     @pr.command(pass_context=True)
-    async def riki(self, ctx):
-       sshgo("tallinn")
+    async def rimouski(self, ctx):
+       sshgo("rimouski")
        await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" Rimouski Redémarré")
 
     @pr.command(pass_context=True)
-    async def stl(self, ctx):
+    async def luceville(self, ctx):
         sshgo("stl")
         await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" Sainte-Luce Redémarré")
 
     @pr.command(pass_context=True)
-    async def mj(self, ctx):
-        sshgo("mj")
+    async def montjoli(self, ctx):
+        sshgo("montjoli")
         await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" Mont-Joli Redémarré")
 
     @pr.command(pass_context=True)
-    async def alarm(self, ctx):
-        sshgo("alarm")
+    async def pokealarm(self, ctx):
+        sshgo("pokealarm")
         await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" PokéAlarms Redémaré")
 
 
