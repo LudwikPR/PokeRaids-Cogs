@@ -21,7 +21,7 @@ class kanaBot:
         self.bot = bot
 
     @commands.group(pass_context=True)
-    @commands.has_role("Pokeraids.Bot")
+    @commands.has_role("PokeRaids.Admin")
     async def kana(self, ctx):
         if ctx.invoked_subcommand is None:
             await self.bot.say('Nope!')
