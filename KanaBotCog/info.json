@@ -1,7 +1,7 @@
 {
-    "AUTHOR" : "Kartul",
-    "INSTALL_MSG" : "Kanabot on valmis!.",
-    "NAME" : "KanaBotCog",
+    "AUTHOR" : "Kartul + LudwikPR edits",
+    "INSTALL_MSG" : "Forked from Kartul.",
+    "NAME" : "PR-Manager",
     "SHORT" : "With great power comes great responsibility",
-    "DESCRIPTION" : "Allows Kananägu to manage some basic services of poraakel"
+    "DESCRIPTION" : "Allows PokeRaids bot to manage some basic services"
 }
