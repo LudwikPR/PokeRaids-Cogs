@@ -22,9 +22,9 @@ class kanaBot:
 
     @commands.group(pass_context=True)
     @commands.has_role("PokeRaids.Admin")
-    async def kana(self, ctx):
+    async def prmap(self, ctx):
         if ctx.invoked_subcommand is None:
-            await self.bot.say('Nope!')
+            await self.bot.say('Commande innexistante!')
 
     @kana.command(pass_context=True)
     async def riki(self, ctx):
