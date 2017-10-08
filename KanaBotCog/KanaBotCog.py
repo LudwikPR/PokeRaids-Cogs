@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import os
 import sys
+
 client = discord.Client()
 
 def sshgo(cmd):
@@ -15,8 +16,6 @@ def sshgo(cmd):
         os.system(theCmd)
 
 class kanaBot:
-    """Allow kanaNagu to have basic control"""
-
     def __init__(self, bot):
         self.bot = bot
 
@@ -45,7 +44,6 @@ class kanaBot:
     async def pokealarm(self, ctx):
         sshgo("pokealarm")
         await self.bot.say(":white_check_mark: "+ (ctx.message.author).mention +" PokéAlarms Redémaré")
-
 
 def setup(bot):
     bot.add_cog(kanaBot(bot))
